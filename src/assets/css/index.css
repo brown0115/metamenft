@@ -1,0 +1,6 @@
+@import './fonts.css';
+@import './base.css';
+
+.gif {
+    filter:grayscale(1) brightness(1.5);
+}

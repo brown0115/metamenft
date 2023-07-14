@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'cerapro-light';
+    src: url('../fonts/Cera Pro Light.otf');
+  }
+  
+  @font-face {
+    font-family: 'cerapro-medium';
+    src: url('../fonts/Cera Pro Medium.otf');
+  }
+  
+  @font-face {
+    font-family: 'cerapro-bold';
+    src: url('../fonts/Cera Pro Bold.otf');
+  }
+  
+  @font-face {
+    font-family: 'cerapro-black';
+    src: url('../fonts/Cera Pro Black.otf');
+  }
