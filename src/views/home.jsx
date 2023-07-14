@@ -3,7 +3,7 @@ import PlayMusic from "../components/modals/playMusic";
 import GetCard from "../components/modals/getCard";
 function HomeView() {
   return (
-    <div className="relative w-full h-screen bg-center bg-no-repeat bg-cover bg-[url('../src/assets/imgs/hero-bg.svg')]">
+    <div className="relative w-full h-screen bg-heroIMG bg-center bg-no-repeat bg-cover">
       <div className="w-full absolute left-0 top-0 w-full min-h-[260px] h-[35%] max-h-[500px] bg-linear01"></div>
       <Header />
       <div className="w-full absolute left-0 bottom-0 rotate-180 w-full min-h-[260px] h-[35%] max-h-[500px] bg-linear01"></div>
