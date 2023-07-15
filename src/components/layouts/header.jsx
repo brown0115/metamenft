@@ -1,7 +1,7 @@
 import Logo from "../../assets/imgs/Logo.svg";
 function Header() {
   return (
-    <div className="relative w-full max-w-[1400px] mx-auto px-[35px]">
+    <div className="fixed top-0 w-full max-w-[1400px] mx-auto px-[35px] left-[50%] translate-x-[-50%]">
       <div className="w-full flex items-center justify-between py-[23px]">
         <a href="/" className="w-full max-w-[160px] flex items-center">
           <img className="w-full" src={Logo} alt="Logo" />

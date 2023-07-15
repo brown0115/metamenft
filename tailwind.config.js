@@ -25,7 +25,7 @@ export default {
         ceraBlack: ['cerapro-black', 'sans-serif'],
       },
       backgroundImage: {
-        'heroIMG': "url('../src/assets/imgs/hero-bg.svg')",
+        'heroIMG': "url('./src/assets/imgs/hero-bg.svg')",
         'linear01': "linear-gradient(to bottom, rgba(15, 0, 27, 1), rgba(29, 0, 52, 0))",
       },
       boxShadow: {
