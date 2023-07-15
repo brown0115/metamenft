@@ -30,7 +30,7 @@ function HomeView() {
         2 -
         scrollPosition /
           (document.documentElement.scrollHeight - window.innerHeight);
-     
+
       if (scrollPosition > document.body.offsetHeight) {
         leftImageRef.current.style.transform = `translateX(-2000px)`;
         rightImageRef.current.style.transform = `translateX(2000px)`;
@@ -43,7 +43,7 @@ function HomeView() {
           rightOffset * 16
         }%)`;
         scrollDownPointer.current.style.opacity = scrollingProgress;
-        videoRef.current.style.transform = `scale(${scrollingProgress2})`
+        videoRef.current.style.transform = `scale(${scrollingProgress2})`;
       }
     };
 

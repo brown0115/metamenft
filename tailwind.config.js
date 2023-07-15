@@ -6,16 +6,20 @@ export default {
       colors:{
         white: '#FFFFFF',
         white15: 'rgba(255, 255, 255, 0.15)',
+        white35: 'rgba(255, 255, 255, 0.35)',
+        white45: 'rgba(255, 255, 255, 0.45)',
         pink: '#FF5FC9',
         pink35: 'rgba(255, 95, 201, 0.35)',
         pink60: 'rgba(255, 95, 201, 0.6)',
         black: '#1E1E1E',
+        black75: 'rgba(0, 0, 0, 0.75)',
+        red: '#FF6340',
       },
       fontSize: {
         xs:'10px',
         sm: "14px",
-        md: "",
-        lg: "",
+        md: "16px",
+        lg: "18px",
         xl: "22px",
       },
       fontFamily: {

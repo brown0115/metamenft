@@ -77,3 +77,182 @@
     transform: translateY(30px) scale(0.5);
   }
 }
+
+/*BTN animation*/
+.btn-animation {
+  position: relative;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.btn-animation:hover span:nth-child(1),
+.btn-animation:hover span:nth-child(2),
+.btn-animation:hover span:nth-child(3),
+.btn-animation:hover span:nth-child(4) {
+  background: theme('colors.pink');
+  transition: all 0.3s ease;
+}
+
+.btn-animation span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: white;
+  animation: animate1 2s linear infinite;
+}
+
+@keyframes animate1 {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.btn-animation span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 1px;
+  background: white;
+  animation: animate2 2s linear infinite;
+  animation-delay: 1s;
+}
+@keyframes animate2 {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.btn-animation span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 1px;
+  background: white;
+  animation: animate3 2s linear infinite;
+}
+
+@keyframes animate3 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.btn-animation span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 1px;
+  background: white;
+  animation: animate4 2s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes animate4 {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+
+
+.animate-flipImg1 {
+  animation: flipImg 2.5s linear infinite alternate
+}
+
+@keyframes flipImg {
+  0% {
+      opacity: 0
+  }
+
+  50% {
+      opacity: 0
+  }
+
+  53% {
+      opacity: 1
+  }
+
+  to {
+      opacity: 1
+  }
+}
+
+.animate-flipImg2 {
+  opacity: 0;
+  animation: flipImg 2.5s linear 2.5s infinite alternate
+}
+
+@keyframes flipWrap {
+  0% {
+      transform: scaleX(.95)
+  }
+
+  to {
+      transform: scaleX(.08);
+      border-radius: 50%
+  }
+}
+
+.animate-flipWrap {
+  animation: flipWrap 1.25s cubic-bezier(.93,.05,.9,.71) infinite alternate
+}
+
+.animate-shineTextSm {
+  animation: shineSm 3s linear infinite forwards
+}
+
+.animate-word1 {
+  animation: switchWord 5s ease-in-out -4s infinite
+}
+
+.animate-word2 {
+  animation: switchWord 5s ease-in-out -3s infinite
+}
+
+@keyframes switchWord {
+  0% {
+      filter: blur(0);
+      opacity: 1
+  }
+
+  5% {
+      filter: blur(0);
+      opacity: 1
+  }
+
+  50% {
+      filter: blur(180px);
+      opacity: 0
+  }
+
+  80% {
+      filter: blur(180px);
+      opacity: 0
+  }
+
+  to {
+      filter: blur(0);
+      opacity: 1
+  }
+}
+
+.animate-word3 {
+  animation: switchWord 5s ease-in-out -2s infinite
+}
