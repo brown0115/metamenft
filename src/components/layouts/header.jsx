@@ -1,5 +1,8 @@
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Logo from "../../assets/imgs/Logo.svg";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 function Header() {
+  const walletAdapter = new PhantomWalletAdapter();
   return (
     <div className="fixed left-[50%] translate-x-[-50%] top-0 w-full max-w-[1400px] mx-auto px-[35px] z-[9]">
       <div className="w-full flex items-center justify-between py-[23px]">
@@ -11,7 +14,7 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
               >
                 claim
               </a>
@@ -19,7 +22,7 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
               >
                 team
               </a>
@@ -27,10 +30,14 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
+                onClick={async () => {
+                  await walletAdapter.connect();
+                }}
               >
                 wallet
               </a>
+              <WalletMultiButton />
             </li>
           </ul>
           <button className="btn-animation flex items-center gap-[12px] py-[12px] px-[22px] bg-white15  group transition-all">
