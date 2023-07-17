@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useCustomWallet } from "../../contexts/WalletContext";
+
 function ClaimCardForm() {
+  const { connected, walletAddress } = useCustomWallet();
   const [walletConnected, setWalletConntected] = useState(false);
-  const [warnMessage, setWarnMessage] = useState(null); // gets true or false
+  const [warnMessage, setWarnMessage] = useState(connected); // gets true or false
   const warningMessage = () => {
-    setWarnMessage(!walletConnected);
+    setWarnMessage(!connected);
   };
   return (
     <div className="w-full h-full absolute top-0 left-0 bg-black75 backdrop-blur-[60px]">
@@ -13,7 +16,8 @@ function ClaimCardForm() {
             <h3 className="text-xl font-ceraBlack text-white mb-[35px] uppercase">
               Claim your gift
             </h3>
-            <form className="w-full h-full">
+            <div className="w-full h-full">
+            {/* <form className="w-full h-full"> */}
               <div className="flex flex-col gap-[40px]">
                 <div
                   onMouseEnter={warningMessage}
@@ -27,7 +31,7 @@ function ClaimCardForm() {
                   </label>
                   <input
                     type="text"
-                    disabled={walletConnected ? false : true}
+                    disabled={connected ? false : true}
                     placeholder="e.g - Mcp6FqTdTqb48uV-metame-PmvV8WqGmfFV"
                     className="w-full px-[16px] py-[20px] text-md text-white outline-none bg-white15 border-b border-b-white transition-all font-ceraLight placeholder-shown:border-b-white35"
                   />
@@ -44,7 +48,7 @@ function ClaimCardForm() {
                   </label>
                   <input
                     type="text"
-                    disabled={walletConnected ? false : true}
+                    disabled={connected ? false : true}
                     placeholder="e.g. adam.sol#5494"
                     className="w-full px-[16px] py-[20px] text-md text-white outline-none bg-white15 border-b border-b-white transition-all font-ceraLight placeholder-shown:border-b-white35"
                   />
@@ -73,14 +77,15 @@ function ClaimCardForm() {
               )}
 
               <button
-                type="submit"
-                className="w-full py-[20px] bg-white rounded-full group mt-[35px] flex items-center justify-center"
+                className={`w-full py-[20px] ${connected ? "bg-white" : "bg-[#888]"} rounded-full group mt-[35px] flex items-center justify-center`}
+                disabled={!connected}
               >
-                <p className="text-md font-ceraMedium text-black group-hover:text-pink transition-all">
-                  Connect your wallet
+                <p className={`text-md font-ceraMedium text-black ${connected ? "hover:text-pink" : ""} transition-all`}>
+                  Submit Code (0.01 sol)
                 </p>
               </button>
-            </form>
+            {/* </form> */}
+            </div>
           </div>
         </div>
       </div>
