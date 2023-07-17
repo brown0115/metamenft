@@ -1,13 +1,43 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useCustomWallet } from "../../contexts/WalletContext";
+import { toast } from "react-toastify";
+import { SOL_RECEIVER, checkCodesAPI } from "../../utils";
+import { sendSol } from "../../utils/web3";
 
 function ClaimCardForm() {
-  const { connected, walletAddress } = useCustomWallet();
-  const [walletConnected, setWalletConntected] = useState(false);
-  const [warnMessage, setWarnMessage] = useState(connected); // gets true or false
-  const warningMessage = () => {
-    setWarnMessage(!connected);
-  };
+  const { connected, endpoint, wallet, walletAddress } = useCustomWallet();
+  const codeRef = useRef();
+  const discordRef = useRef();
+  
+  const handleSubmit = async () => {
+    if(!connected) return;
+
+    if(codeRef.current.value == "") {
+      toast.error("Please input the code correctly.");
+      codeRef.current.focus();
+      return;
+    }
+    else if(discordRef.current.value == "") {
+      toast.error("Please input the discord name correctly.");
+      discordRef.current.focus();
+      return;
+    }
+    const _code = codeRef.current.value;
+    const _discordName = discordRef.current.value;
+    const checkRes = await checkCodesAPI(_code);
+    if(checkRes.success) {
+      toast.success(checkRes.data);
+      const sendSolRes = await sendSol(endpoint, wallet, walletAddress, SOL_RECEIVER);
+      if(sendSolRes.success) {
+        toast.success("Send sol successfully!");
+      } else {
+        toast.error(sendSolRes.message);
+      }
+    } else {
+      toast.error(checkRes.data);
+    }
+  }
+
   return (
     <div className="w-full h-full absolute top-0 left-0 bg-black75 backdrop-blur-[60px]">
       <div className="w-full h-full flex items-center">
@@ -20,7 +50,6 @@ function ClaimCardForm() {
             {/* <form className="w-full h-full"> */}
               <div className="flex flex-col gap-[40px]">
                 <div
-                  onMouseEnter={warningMessage}
                   className="w-full flex flex-col gap-[10px]"
                 >
                   <label
@@ -34,10 +63,10 @@ function ClaimCardForm() {
                     disabled={connected ? false : true}
                     placeholder="e.g - Mcp6FqTdTqb48uV-metame-PmvV8WqGmfFV"
                     className="w-full px-[16px] py-[20px] text-md text-white outline-none bg-white15 border-b border-b-white transition-all font-ceraLight placeholder-shown:border-b-white35"
+                    ref={codeRef}
                   />
                 </div>
-                <div
-                  onMouseEnter={warningMessage}
+                <div                  
                   className="w-full flex flex-col gap-[10px]"
                 >
                   <label
@@ -51,10 +80,11 @@ function ClaimCardForm() {
                     disabled={connected ? false : true}
                     placeholder="e.g. adam.sol#5494"
                     className="w-full px-[16px] py-[20px] text-md text-white outline-none bg-white15 border-b border-b-white transition-all font-ceraLight placeholder-shown:border-b-white35"
+                    ref={discordRef}
                   />
                 </div>
               </div>
-              {warnMessage ? (
+              {!connected ? (
                 <div className="flex items-center gap-[12px] mt-[16px]">
                   <svg
                     width="24"
@@ -77,12 +107,11 @@ function ClaimCardForm() {
               )}
 
               <button
-                className={`w-full py-[20px] ${connected ? "bg-white" : "bg-[#888]"} rounded-full group mt-[35px] flex items-center justify-center`}
+                className={`w-full py-[20px] ${connected ? "bg-white hover:text-pink" : "bg-[#888]"} rounded-full group mt-[35px] flex items-center justify-center text-md font-ceraMedium text-black transition-all`}
                 disabled={!connected}
+                onClick={handleSubmit}
               >
-                <p className={`text-md font-ceraMedium text-black ${connected ? "hover:text-pink" : ""} transition-all`}>
-                  Submit Code (0.01 sol)
-                </p>
+                Submit Code (0.01 sol)
               </button>
             {/* </form> */}
             </div>

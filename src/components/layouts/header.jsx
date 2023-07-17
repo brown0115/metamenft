@@ -3,6 +3,8 @@ import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Logo from "../../assets/imgs/Logo.svg";
 import { useCustomWallet } from "../../contexts/WalletContext";
 import { getShortAddress } from "../../utils";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Header() {
   const { connected, connectWallet, disconnectWallet, walletAddress } = useCustomWallet();
@@ -90,6 +92,7 @@ function Header() {
           </button>
         </nav>
       </div>
+      <ToastContainer />
     </div>
   );
 }

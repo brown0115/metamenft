@@ -7,8 +7,9 @@ export const WalletContext = createContext();
 
 export const CustomWalletProvider = (props) => {
     // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'
-    const network = WalletAdapterNetwork.Mainnet;
+    const network = WalletAdapterNetwork.Devnet;
     const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+    console.log("endpoint=", endpoint);
     const walletAdapter = new PhantomWalletAdapter();
 
     const [connected, setConnected] = useState(false);
@@ -17,8 +18,9 @@ export const CustomWalletProvider = (props) => {
 
     const connectWallet = async() => {
         await walletAdapter.connect();
+        console.log("walletAdapter=", walletAdapter)
         setConnected(true);
-        // setWallet(walletAdapter.);
+        setWallet(walletAdapter);
         setWalletAddress(walletAdapter.publicKey.toBase58());
     }
 
@@ -30,7 +32,7 @@ export const CustomWalletProvider = (props) => {
     }
 
     return (
-        <WalletContext.Provider value={{connectWallet, disconnectWallet, connected, walletAddress, wallet}}>
+        <WalletContext.Provider value={{connectWallet, disconnectWallet, connected, endpoint, walletAddress, wallet}}>
             {props.children}
         </WalletContext.Provider>
     )
