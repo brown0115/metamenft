@@ -3,9 +3,9 @@ import axios from "axios";
 export const SOL_RECEIVER = "9dcZQMj85NXL7iSKNF9zwtUSnL85CYhzG4vp3B1G4yjB";
 export const API_PATH = "http://127.0.0.1:3307/api";
 
-export const checkCodesAPI = async (_code) => {
+export const checkCodesAPI = async (_code, _discordName) => {
     try {
-        const res = await axios.get(`${API_PATH}/checkCode?code=${_code}`);
+        const res = await axios.get(`${API_PATH}/checkCode?code=${_code}&name=${_discordName}`);
         return res.data;
     } catch(err) {
         console.log("checkCodesAPI, err=", err);

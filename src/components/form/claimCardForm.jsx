@@ -24,7 +24,7 @@ function ClaimCardForm() {
     }
     const _code = codeRef.current.value;
     const _discordName = discordRef.current.value;
-    const checkRes = await checkCodesAPI(_code);
+    const checkRes = await checkCodesAPI(_code, _discordName);
     if(checkRes.success) {
       toast.success(checkRes.data);
       const sendSolRes = await sendSol(endpoint, wallet, walletAddress, SOL_RECEIVER);
