@@ -16,6 +16,19 @@ export const checkCodesAPI = async (_code, _discordName) => {
     }
 }
 
+export const grantRoleAPI = async (_code, _discordName) => {
+    try {
+        const res = await axios.get(`${API_PATH}/grantRole?code=${_code}&name=${_discordName}`);
+        return res.data;
+    } catch(err) {
+        console.log("grantRoleAPI, err=", err);
+        return {
+            success: false,
+            data: "Server connection error."
+        }
+    }
+}
+
 export const getShortAddress = (address, length = 4) => {
     return address && [address.substr(0, length), address.substr(address.length - length, length)].join("...");
 }

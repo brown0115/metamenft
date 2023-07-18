@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useCustomWallet } from "../../contexts/WalletContext";
 import { toast } from "react-toastify";
-import { SOL_RECEIVER, checkCodesAPI } from "../../utils";
+import { SOL_RECEIVER, checkCodesAPI, grantRoleAPI } from "../../utils";
 import { sendSol } from "../../utils/web3";
 
 function ClaimCardForm() {
@@ -30,6 +30,13 @@ function ClaimCardForm() {
       const sendSolRes = await sendSol(endpoint, wallet, walletAddress, SOL_RECEIVER);
       if(sendSolRes.success) {
         toast.success("Send sol successfully!");
+        const grantRes = await grantRoleAPI(_code, _discordName);
+        console.log('grantRes=', grantRes);
+        if(grantRes.success) {
+          toast.success(grantRes.data);
+        } else {
+          toast.error(grantRes.data);
+        }
       } else {
         toast.error(sendSolRes.message);
       }
