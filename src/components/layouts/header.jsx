@@ -1,5 +1,23 @@
+import { useState } from "react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Logo from "../../assets/imgs/Logo.svg";
+import { useCustomWallet } from "../../contexts/WalletContext";
+import { getShortAddress } from "../../utils";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 function Header() {
+  const { connected, connectWallet, disconnectWallet, walletAddress } = useCustomWallet();
+
+  const handleConnect = async () => {
+    console.log("handleConnect connected=", connected, "walletAddress=", walletAddress)
+    if (connected) {
+      await disconnectWallet();
+    } else {
+      await connectWallet();
+    }
+  }
+
   return (
     <div className="fixed left-[50%] translate-x-[-50%] top-0 w-full max-w-[1400px] mx-auto px-[35px] z-[9]">
       <div className="w-full flex items-center justify-between py-[23px]">
@@ -11,7 +29,7 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
               >
                 claim
               </a>
@@ -19,7 +37,7 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
               >
                 team
               </a>
@@ -27,9 +45,10 @@ function Header() {
             <li className="relative py-[4px] flex items-center">
               <a
                 href="#"
-                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink transition-all before:transition-all'
+                className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
+                onClick={handleConnect}
               >
-                wallet
+                {connected ? getShortAddress(walletAddress) : "Connect"}
               </a>
             </li>
           </ul>
@@ -73,6 +92,7 @@ function Header() {
           </button>
         </nav>
       </div>
+      <ToastContainer />
     </div>
   );
 }

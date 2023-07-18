@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import Card from "../../assets/imgs/card.svg";
 import Card2 from "../../assets/imgs/card2.png";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function getCard() {
   const [pathname, setPathName] = useState(useLocation().pathname);
