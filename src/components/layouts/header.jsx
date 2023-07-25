@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-// import Logo from "../../assets/imgs/Logo.png";
-import Logo from "../../assets/imgs/Logo_1.svg";
+import Logo from "../../assets/imgs/Logo.png";
+import Logo1 from "../../assets/imgs/Logo_1.svg";
 import { useCustomWallet } from "../../contexts/WalletContext";
 import { getShortAddress } from "../../utils";
 import { ToastContainer } from "react-toastify";
@@ -12,7 +12,6 @@ function Header() {
   const { connected, connectWallet, disconnectWallet, walletAddress } = useCustomWallet();
 
   const handleConnect = async () => {
-    console.log("handleConnect connected=", connected, "walletAddress=", walletAddress)
     if (connected) {
       await disconnectWallet();
     } else {
@@ -28,7 +27,7 @@ function Header() {
   return (
     <div className="fixed left-[50%] translate-x-[-50%] top-0 w-full max-w-[1400px] mx-auto px-[35px] z-[9]">
       <div className="w-full flex items-center justify-between py-[23px]">
-        <a href="/" className="w-full max-w-[160px] flex items-center">
+        <a href="/" className="w-full max-w-[40px] flex items-center">
           <img className="w-full" src={Logo} alt="Logo" />
         </a>
         <nav className="relative flex items-center gap-[45px]">
