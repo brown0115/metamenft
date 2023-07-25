@@ -6,6 +6,7 @@ import { useCustomWallet } from "../../contexts/WalletContext";
 import { getShortAddress } from "../../utils";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
 function Header() {
   const { connected, connectWallet, disconnectWallet, walletAddress } = useCustomWallet();
@@ -15,7 +16,12 @@ function Header() {
     if (connected) {
       await disconnectWallet();
     } else {
-      await connectWallet();
+      try{
+        await connectWallet();
+      }
+      catch {
+        toast.error("Can not connect Pantom Wallet!");
+      }
     }
   }
 
@@ -29,7 +35,7 @@ function Header() {
           <ul className="flex items-center gap-[25px]">
             <li className="relative py-[4px] flex items-center">
               <a
-                href="#"
+                href="/claim-card"
                 className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
               >
                 claim
@@ -45,7 +51,6 @@ function Header() {
             </li>
             <li className="relative py-[4px] flex items-center">
               <a
-                href="#"
                 className='text-sm font-ceraMedium text-white uppercase hover:text-pink transition-all before:content-[""] before:absolute before:top-full before:w-[0%] before:hover:w-full before:left-[50%] before:translate-x-[-50%] before:h-[1px] before:bg-pink before:transition-all'
                 onClick={handleConnect}
               >
